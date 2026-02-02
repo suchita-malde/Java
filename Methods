@@ -1,0 +1,115 @@
+/* Calling Constructor */
+class Demo{
+    Demo(){
+        this("Default Constructor"); // calls parameterised Constructor
+    }
+
+    Demo(String message){
+    System.out.println(message);
+    }
+}
+
+public class main{
+    public static void main(String[] args){
+        new Demo();
+    }
+}
+
+//parameterised constructor
+class Demo{
+    String name;
+    int id;
+
+    Demo(String name, int id){
+        this.name = name;
+        this.id = id;
+    }
+
+    void display(){
+        System.out.println("Name:" + name);
+        System.out.println("ID:"+ id);
+
+    }
+}
+class main{
+    public static void main(String[] args){
+        Demo d= new Demo("Suchita",211);
+        d.display();
+    }
+}
+
+
+/*use of super keyword */
+/*accesing parent class members */
+
+class Parent{
+    void display(){
+        System.out.println("Parent Class Method");
+    }
+}
+
+class Child extends Parent{
+    void display(){
+        super.display(); //calls parent class method
+        System.out.println("Child Class Method");
+    }
+}
+
+public class main{
+    public static void main(String[] args){
+        Child c = new Child();
+        c.display();
+    }
+}
+
+/*Calling Parent Class Constructor */
+class Parent{
+    Parent(){
+        System.out.println("Parent Class Constructor");
+    }
+}
+
+class Child extends Parent{
+    Child(){
+        super();
+        System.out.println("Child Class constructor");
+    }
+}
+
+public class main{
+    public static void main(String[] args) {
+        new Child();
+    }
+}
+
+/*Final Methods */
+class Parent{
+    final void display(){
+        System.out.println("Final method in parent class");
+    }
+}
+
+class Child extends Parent{
+    // void display()
+}
+
+public class FinalMethodExample{
+    public static void main(String[] args){
+        Child c = new Child();
+        c.display();
+    }
+}
+
+/*Final Classes */
+final class FinalClass{
+    void display(){
+        System.out.println("This is a final class");
+    }
+}
+
+public class FinalMethodExample{
+    public static void main(String[] args){
+        FinalClass obj = new FinalClass();
+        obj.display();
+    }
+}
