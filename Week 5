@@ -1,0 +1,50 @@
+/* Single Inheritance */
+class Animal{
+    void eat(){
+        System.out.println("This animal eats food.");
+    }
+}
+
+class Dog extends Animal{
+    void bark(){
+        System.out.println("Dog barks");
+    }
+}
+
+public class main{
+    public static void main (String[] args){
+        Dog d = new Dog();
+        d.eat();
+        d.bark();
+    }
+}
+
+/* Multilevel Inheritance */
+class Grandparent {
+    void showGrandparent() {
+        System.out.println("Grandparent class method");
+    }
+}
+
+class Parent extends Grandparent {
+    void showParent() {
+        System.out.println("Parent class method");
+    }
+}
+
+class Child extends Parent {
+    void showChild() {
+        System.out.println("Child class method");
+    }
+}
+
+public class main {
+    public static void main(String args[]) {
+        Child c = new Child();
+        c.showGrandparent();
+        c.showParent();
+        c.showChild();
+    }
+}
+
+
