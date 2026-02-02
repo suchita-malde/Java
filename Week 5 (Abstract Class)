@@ -1,0 +1,71 @@
+/* Abstract Keyword */
+abstract class Shape{
+    abstract void draw(); //abstract method
+
+    void message(){
+        System.out.println("This is a shape");
+    }
+}
+
+class Circle extends Shape{
+    void draw(){
+        System.out.println("Drawing a circle");
+    }
+}
+
+class Triangle extends Shape{
+    void draw(){
+        System.out.println("Drawing a traingle");
+    }
+}
+
+class Rectangle extends Shape{
+    void draw(){
+        System.out.println("Drawing a reactangle");
+    }
+}
+
+public class main{
+    public static void main(String[] args) {
+        Shape s = new Circle();
+        s.draw();
+        s.message();
+        Shape t = new Triangle();
+        t.draw();
+        t.message();
+        Shape r = new Rectangle();
+        r.draw();
+        r.message();
+    }
+}
+
+abstract class Animal{
+    abstract void sound(); // abstract method
+
+    void eat(){ // concrete method
+        System.out.println("This animal eats food");
+    }
+}
+
+class Dog extends Animal{
+    void sound(){
+        System.out.println("Dog barks");
+    }
+    void sleep(){
+        System.out.println("Dog sleeps");
+    }
+}
+
+public class main{
+    public static void main(String[] args) {
+        Animal animal = new Dog();
+        animal.sound();
+        animal.eat();
+        
+        Dog dog = new Dog();
+        dog.sleep();
+    }
+}
+
+
+
