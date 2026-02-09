@@ -1,0 +1,163 @@
+ //method overloading: Different parameters
+// addition
+class Calculator{
+    int add(int a, int b){
+        return a+b;
+    }
+    
+    double add(double a, double b){
+        return a+b;
+    }
+    int add(int a, int b, int c){
+        return a+b+c;
+    }
+}
+public class main{
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(5,10)); // calls int version
+        System.out.println(calc.add(5.5, 2.2));  // calls double version
+        System.out.println(calc.add(1,2,3));  // calls three-int version
+    }
+}
+
+
+//subtraction
+class Calculator{
+    int sub(int a, int b){
+        return a-b;
+    }
+    
+    double sub(double a, double b){
+        return a-b;
+    }
+    int sub(int a, int b, int c){
+        return a-b-c;
+    }
+}
+public class main{
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.sub(5,10)); // calls int version
+        System.out.println(calc.sub(5.5, 2.2));  // calls double version
+        System.out.println(calc.sub(1,2,3));  // calls three-int version
+    }
+}
+
+
+//multiplication
+class Calculator{
+    //method overloading: Different parameters
+    int mult(int a, int b){
+        return a*b;
+    }
+    
+    double mult(double a, double b){
+        return a*b;
+    }
+    int mult(int a, int b, int c){
+        return a*b*c;
+    }
+}
+public class main{
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.mult(5,10)); // calls int version
+        System.out.println(calc.mult(5.5, 2.2));  // calls double version
+        System.out.println(calc.mult(1,2,3));  // calls three-int version
+    }
+}
+
+
+
+//division
+class Calculator{
+    int div(int a, int b){
+        return a/b;
+    }
+    
+    double div(double a, double b){
+        return a/b;
+    }
+    int div(int a, int b, int c){
+      return a/b/c;
+    }
+}
+public class main{
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.div(5,10)); // calls int version
+        System.out.println(calc.div(5.5, 2.2));  // calls double version
+        System.out.println(calc.div(1,2,3));  // calls three-int version
+    }
+}
+
+//method overriding 
+class BankAccount{
+    double getInterestRate(){
+        return 0.0; // default interest rate
+    }
+}
+
+// child class - Savings Account 
+class SavingsAccount extends BankAccount{
+    @Override
+    double getInterestRate(){
+        return 4.5 ;// savings interest rate
+    }
+} 
+
+class CurrentAccount extends BankAccount{
+    @Override
+    double getInterestRate(){
+        return 3.0; //Cureent account interest
+    }
+}
+
+
+
+class Animal{
+    void sound(){
+        System.out.println("Animal makes a sound");
+    }
+    void eat(){
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal{
+    @Override
+    void sound(){
+        System.out.println("Dog Barks");
+    }
+    @Override
+    void eat(){
+        System.out.println("Dog eats");
+    }
+}
+class Cat extends Animal{
+    @Override
+    void sound(){
+        System.out.println("Cat meows");
+    }
+    @Override
+    void eat(){
+        System.out.println("Meow eats");
+    }
+}
+
+public class main {
+    public static void main(String[] args) {
+
+        Animal a;
+
+        a = new Dog();
+        a.sound();
+        a.eat();
+
+        a = new Cat();
+        a.sound();
+        a.eat();
+    }
+}
+
