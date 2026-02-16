@@ -1,0 +1,36 @@
+//Array
+public class ArrayExample {
+    public static void main(String[] args){
+        int[] numbers = {10,20,30,40,50};
+
+        // using for loop
+        for(int i = 0; i < numbers.length; i++){
+            System.out.println(numbers[i]);
+        }
+
+        // using enhanced for loop
+        for(int num : numbers){
+            System.out.println(num);
+        }
+    }
+}
+
+//Array List 
+import java.util.ArrayList;
+public class ArrayListExample{
+    public static void main(String[] args) {
+        ArrayList<String> fruits = new ArrayList<>();
+
+        fruits.add("Apple");
+        fruits.add("Bnanana");
+        fruits.add("Cherry");
+
+        System.out.println("Fruits: "+ fruits);
+        fruits.remove("Banana"); // remove element
+        System.out.println("After removing Banana: " + fruits);
+
+        System.out.println("Size: " +fruits.size()); // get size
+        System.out.println("Contains Apple? " + fruits.contains("Appple"));
+    }
+}
+
