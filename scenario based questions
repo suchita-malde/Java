@@ -1,0 +1,128 @@
+// the mult-tier interest system 
+// base class: Account 
+class Account{
+    double balance;
+
+    // constructor to intialise balance
+    Account(double balance){
+        this.balance=balance;
+    }
+
+    // base interest method (2% interest)
+    double calculateInterest(){
+        return balance*0.02;
+    }
+}
+// savingsaccount overrides interest calculation logic
+class savingsAccount extends Account{
+
+    // constructor calls parent constructor using super
+    public savingsAccount(double balance) {
+        super(balance);
+    }
+
+    //overriding calculate interest() method
+    @Override
+    double calculateInterest(){
+
+        // 4% interest for savings account
+       double interest=balance*0.04;
+
+    // bonus condition
+    if(balance>50000){
+        interest+=500;
+    }
+    return interest;
+    }
+}
+
+class FixedDeposit extends savingsAccount{
+
+    FixedDeposit(double balance){
+        super(balance);
+    }
+
+    @Override
+    double calculateInterest(){
+        double savingsInterest=super.calculateInterest();
+        double extra=balance*0.02;
+
+        return savingsInterest+extra;
+    }
+}
+
+public class main{
+    public static void main(String[] args){
+        savingsAccount s1 = new savingsAccount(10000);
+        System.out.println(s1.calculateInterest());
+
+        savingsAccount s2 = new savingsAccount(60000);
+        System.out.println(s2.calculateInterest());
+
+        FixedDeposit f1 = new FixedDeposit(60000);
+        System.out.println(f1.calculateInterest());
+    }
+}
+
+
+
+//the Multi-Tier Payroll System
+// base class: employee
+class employee{
+    String name; 
+    double baseSalary;
+
+    // contructor for employee
+    employee(String name, double baseSalary){
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+
+    // base salary calculation
+    double calculateSalary(){
+        return baseSalary + (baseSalary*0.05);
+    }
+}
+
+class Manager extends employee{
+    Manager(String name, double baseSalary){
+        super(name, baseSalary);
+    }
+
+    @Override
+    double calculateSalary(){
+        double salary = super.calculateSalary();
+        salary += 2000;
+        return salary;
+    }
+}
+
+class executive extends Manager{
+    executive(String name, double baseSalary){
+        super(name, baseSalary);
+    }
+    @Override
+    double calculateSalary(){
+        double salary=super.calculateSalary();
+        double incentive = baseSalary * 0.10;
+        salary+=incentive;
+        return salary;
+    }
+}
+
+public class main{
+    public static void main(String[] args) {
+        employee e1 = new employee("Alice", 10000);
+        System.out.println(e1.calculateSalary());
+
+        Manager m1 = new Manager("Bob", 10000);
+        System.out.println(m1.calculateSalary());
+
+        executive ex1 = new executive("Charlie", 10000);
+        System.out.println(ex1.calculateSalary());
+    }
+}
+
+
+
+
