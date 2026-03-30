@@ -1,0 +1,74 @@
+// the smart payment gateway
+abstract class Payment{
+
+    private String transactionId;
+    private double amount;
+
+    public Payment(String transactionId, double amount) {
+        this.transactionId=transactionId;
+        this.amount=amount;
+    }
+
+    public String getTransactionId(){
+        return transactionId;
+
+    }
+    public double getAmount(){
+        return amount;
+    }
+    abstract double processPayment();
+}
+
+class CreditCardPayment extends Payment{
+
+    public CreditCardPayment(String transactionId, double amount){
+        super(transactionId, amount);
+    }
+
+    @Override
+    double processPayment() {
+        return getAmount() + (getAmount()*0.02);
+    }
+}
+
+class UPIPayment extends Payment{
+    UPIPayment(String transactionId, double amount){
+        super(transactionId, amount);
+    }
+
+    @Override
+    double processPayment(){
+        return getAmount();
+    }
+}
+
+class PayementProcessor{
+    public void process(Payment payment){
+        System.out.println("Transaction ID: "+payment.getTransactionId());
+        System.out.println("Final Amount "+ payment.processPayment());
+        System.out.println("-------------------------");
+    }
+}
+
+public class main{
+    public static void main(String[] args) {
+        Payment p1 = new CreditCardPayment("TXN001", 1000.0);
+        Payment p2 = new UPIPayment("TXN002", 1000.0);
+        PayementProcessor processor = new PayementProcessor();
+
+        processor.process(p1);
+        processor.process(p2);
+
+        Payment[] payments = {
+            new CreditCardPayment("TXN003", 10000.0),
+            new UPIPayment("TXN004", 1000.0)
+        };
+        double total =0;
+
+        for (Payment p: payments){
+            total+=p.processPayment();
+
+        }
+        System.out.println("Total Payment = " + total);
+    }
+}
