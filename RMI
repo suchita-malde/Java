@@ -1,0 +1,213 @@
+#Hello.java interface
+package rmi;
+
+import java.rmi.*;
+import java.rmi.Remote;
+
+public interface Hello extends Remote {
+	String sayHello() throws RemoteException;
+}
+
+#HelloImpl.java class
+package rmi;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+public class HelloImpl extends UnicastRemoteObject implements Hello {
+	public HelloImpl() throws RemoteException {
+		super();
+	}
+	public String sayHello() {
+		return "Hello from Server!";
+	}
+}
+
+#HelloServer.java class
+package rmi;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class HelloServer {
+	public static void main(String[] args) {
+		try {
+			HelloImpl obj = new HelloImpl();
+			Registry registry = LocateRegistry.createRegistry(2000);
+			registry.rebind("HelloService", obj);
+			
+			System.out.println("Server started...");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+#HelloClient.java class
+package rmi;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class HelloClient {
+	public static void main(String[] args) {
+		try {
+			Registry registry = LocateRegistry.getRegistry("localhost", 2000);
+			Hello stub = (Hello) registry.lookup("HelloService");
+			String response = stub.sayHello();
+			System.out.println("Server says: "+response);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}#Hello.java interface
+package rmi;
+
+import java.rmi.*;
+import java.rmi.Remote;
+
+public interface Hello extends Remote {
+	String sayHello() throws RemoteException;
+}
+
+#HelloImpl.java class
+package rmi;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+public class HelloImpl extends UnicastRemoteObject implements Hello {
+	public HelloImpl() throws RemoteException {
+		super();
+	}
+	public String sayHello() {
+		return "Hello from Server!";
+	}
+}
+
+#HelloServer.java class
+package rmi;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class HelloServer {
+	public static void main(String[] args) {
+		try {
+			HelloImpl obj = new HelloImpl();
+			Registry registry = LocateRegistry.createRegistry(2000);
+			registry.rebind("HelloService", obj);
+			
+			System.out.println("Server started...");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+#HelloClient.java class
+package rmi;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class HelloClient {
+	public static void main(String[] args) {
+		try {
+			Registry registry = LocateRegistry.getRegistry("localhost", 2000);
+			Hello stub = (Hello) registry.lookup("HelloService");
+			String response = stub.sayHello();
+			System.out.println("Server says: "+response);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+#calculation of two numbers
+#Calculator.java interface
+package rmi;
+import java.rmi.*;
+import java.rmi.Remote;
+public interface Calculator extends Remote {
+	int add(int a, int b) throws RemoteException;
+	int sub(int a, int b) throws RemoteException;
+	int div(int a, int b) throws RemoteException;
+	int mul(int a, int b) throws RemoteException;
+}
+
+#CalculatorImpl.java class
+package rmi;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+public class CalculatorImpl extends UnicastRemoteObject implements Calculator {
+	public CalculatorImpl() throws RemoteException {
+		super();
+	}
+	public int add(int a, int b) {
+		return a+b;
+	}
+	public int sub(int a, int b) {
+		return a-b;
+	}
+	public int div(int a, int b) {
+		return a/b;
+	}
+	public int mul(int a, int b){
+		return a*b;
+	}
+}
+
+#CalculatorServer.java class
+package rmi;
+import java.rmi.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class CalculatorServer {
+	public static void main(String[] args) {
+		try {
+			Calculator obj = new CalculatorImpl();
+			Registry registry = LocateRegistry.createRegistry(2004);
+			registry.rebind("CalcService", obj);
+			
+			System.out.println("Server started...");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+#CalculatorClient.java class
+package rmi;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class CalculatorClient {
+    public static void main(String[] args) {
+        try {
+            Registry registry = LocateRegistry.getRegistry("localhost", 2004);
+            Calculator stub = (Calculator) registry.lookup("CalcService");
+            int a = 5;
+            int b = 10;
+            int result = stub.add(a, b);
+            System.out.println("Result from server: " + result);
+            int result1 = stub.sub(a, b);
+            System.out.println("Result from server: " + result1);
+            int result2 = stub.div(a, b);
+            System.out.println("Result from server: " + result2);
+            int result3 = stub.mul(a, b);
+            System.out.println("Result from server: " + result3);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
