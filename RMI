@@ -129,6 +129,78 @@ public class HelloClient {
 }
 
 
+
+
+#Get student Details
+#Details.java interface
+package rmi;
+import java.rmi.*;
+public interface Details extends Remote {
+    String getDetails() throws RemoteException;
+}
+
+#DetailsImpl.java class
+package rmi;
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
+public class DetailsImpl extends UnicastRemoteObject implements Details {
+
+    public DetailsImpl() throws RemoteException {
+        super();
+    }
+    public String getDetails() throws RemoteException {
+        return "Name: Suchita Malde, Age: 21, College: SIT";
+    }
+}
+
+#DetailsServer.java class
+package rmi;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+public class DetailsServer {
+    public static void main(String[] args) {
+        try {
+            Details obj = new DetailsImpl();
+
+            Registry registry = LocateRegistry.createRegistry(2003);
+            registry.rebind("DetailService", obj);
+
+            System.out.println("Server started...");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+#DetailsClient.java class
+package rmi;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class DetailsClient {
+    public static void main(String[] args) {
+        try {
+            Registry registry = LocateRegistry.getRegistry("localhost", 2003);
+
+            Details stub = (Details) registry.lookup("DetailService");
+
+            String result = stub.getDetails();
+
+            System.out.println("Details from server:");
+            System.out.println(result);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+
+
+
 #calculation of two numbers
 #Calculator.java interface
 package rmi;
